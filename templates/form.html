@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Madlibs Form</title>
+</head>
+<body>
+    <h1>Welcome to Madlibs!</h1>
+    <h2>Fill out the prompt.</h2>
+    <form action="/story" method="POST">
+        {% for prompt in prompts %}
+            <div>
+                <label for="{{ prompt }}">{{ prompt.replace('_', ' ').title() }}:</label>
+                <input type="text" id="{{ prompt }}" name="{{ prompt }}" required>
+            </div>
+            <br>
+        {% endfor %}
+        <button type="submit">Generate Story</button>
+    </form>
+</body>
+</html>
